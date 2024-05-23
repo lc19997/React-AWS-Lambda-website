@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>データ作成ツール</title>
+
+		<script src="/js/aws/jsbn.js"></script>
+		<script src="/js/aws/jsbn2.js"></script>
+		<script src="/js/aws/sjcl.js"></script>
+		<script src="/js/aws/aws-sdk.min.js"></script>
+		<script src="/js/aws/aws-cognito-sdk.min.js"></script>
+		<script src="/js/aws/amazon-cognito-identity.min.js"></script>
+
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/adminstyle.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+        <!-- For Modal,Popup -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@4.0.0/bootstrap-4.min.css"
+            integrity="sha256-Rag8Pia41jQPeD4LwBW3TE9GbL4eN32V1vAcivpqWkw=" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <!-- Use Datetime -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+            integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
+            integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ=="
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ja.min.js"
+            integrity="sha512-rElveAU5iG1CzHqi7KbG1T4DQIUCqhitISZ9nqJ2Z4TP0z4Aba64xYhwcBhHQMddRq27/OKbzEFZLOJarNStLg=="
+            crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script type="module" src="./js/cognito-auth.js"></script>
+        <script src="./js/createdata.js"></script>
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="tables.html" style="color: white; font-size: 34px;">データ作成ツール</a>
+            <!-- Navbar-->
+            <div class="d-flex ms-auto me-0 me-md-3 my-2 my-md-0 align-items-center">
+                <!-- <img src="./image/circle.png" alt="..."> -->
+                <h6 class = "avartartitle">Admin</h6>
+                <button class="btn" id="LogoutButton" type="button">ログアウト</button>
+            </div>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading mb-4"></div>
+                            <a class="nav-link" href="datatables.html">                              
+                              <img class="iconstyle" src="./image/icon1.svg"/> 
+                              <span class="icontext">作成状況・履歴</span>
+                            </a>
+                            <a class="nav-link active" href="createdata.html">   
+                              <img class="iconstyle" src="./image/icon2.svg"/>                              
+                              <span class="icontext">データ作成</span>                            
+                            </a>                 
+                            <a class="nav-unlink" href="#"> 
+                              <img class="iconstyle" src="./image/icon3.svg"/>  
+                              <span class="icontext">スケジュール管理</span>
+                            </a>
+                            <a class="nav-unlink" href="#"> 
+                              <img class="iconstyle" src="./image/icon4.svg"/>                   
+                              <span class="icontext">マスタアップロード</span>
+                            </a>
+                            <a id="usernav" class="nav-link" href="users.html"> 
+                              <img class="iconstyle" src="./image/icon5.svg"/>                           
+                              <span class="icontext">ユーザー管理</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer" style="text-align: right;">
+                        <hr>
+                        <button id="sidebarToggle" style="background-color: #6d6d6d;; text-align: right; color: white;">&lt;&lt;</button>
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <div class="container-fluid px-4">
+                    <div class="d-flex pagetitle">
+                        <img src="./image/head.png" alt="...">
+                        <h3 style="margin-left: 10px"><bold>データ作成</bold></h3>
+                    </div>
+                    <div id="inputForm" >
+                        <!-- Start Input Name -->
+                  
+                        <div class="text-center"><h5>作成するデータの条件を選択して下さい。</h5></div>
+                        
+                        <div class="form-group d-flex mt-3 align-items-center">
+                            <label for="inputName" style="width: 18%;">データ名称</label>
+                            <input type="text" id="dataname" class="form-control" name="text" placeholder="" required />
+                        </div>
+
+                        <div class="form-group d-flex mt-3 align-items-center">
+                            <label for="inputName" style="width: 18%;">顧客コード</label>
+                            <input type="text" id="customercode" class="form-control" name="text" placeholder="指定なし" required />
+                        </div>      
+                        <div class="form-group d-flex mt-3 align-items-center">
+                            <label for="データ種別" style="width: 18%;">データ種別</label>
+                            <select id="mastertype" class="form-mycontrol" placeholder="指定なし">
+                                <option value="0" class="option0">指定なし</option>
+                            </select>
+                        </div>
+                        <div class="form-group d-flex mt-3 align-items-center">
+                            <label for="データ種別" style="width: 18%;">出力形式</label>
+                            <select id="datatype" class="form-mycontrol">
+                                <option value="0" class="option0">指定なし</option>
+                                <option id="torituke" value="1">CSV</option>
+                                <option id="shuri" value="2">CSV + ZIP</option>
+                                <option id="parquet" value="3">parquet</option>
+                            </select>
+                        </div>                   
+                        <div class="form-group d-flex mt-3 align-items-center">
+                            <label for="inputName" style="width:18%">期間</label>
+                            <input type="date" id="startdate" class="form-control " name="date" placeholder="yyyy / mm / dd" required />
+                            <small class="form-text text-muted mx-4">~</small>
+                            <input type="date" id="enddate" class="form-control" name="date" placeholder="yyyy / mm / dd" required />
+                        </div>
+                        <!-- End Input Name -->
+
+                        <div class="form-group d-flex mt-3 mb-4 align-items-center">
+                            <div style="width: 18%;">
+                                <label for="inputName">出力先</label>
+                                <label for="inputName">プレフィックス</label>
+                            </div>
+                            
+                            <input type="text" id="outputprefix" class="form-control" name="text" placeholder="指定なし" required />
+                        </div>
+                        <div id="message" class="text-center mt-2 mb-2"><span style="color: red;"></span></div>
+                        <!-- Start Submit Button -->
+                        <div class="text-center">
+                            <button id = "submitButton" class="btn btn-block col-lg-4">保存して作成</button>
+                        </div>  
+                        <!-- End Submit Button -->
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <!-- <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <!-- <script src="js/datatables-simple-demo.js"></script> -->
+          <!-- Start Scritp for Form -->
+        <script>
+            flatpickr("#startdate", {
+                dateFormat: "Y / m / d",
+                allowInput: true,
+                locale: 'ja'
+            });
+            flatpickr("#enddate", {
+                dateFormat: "Y / m / d",
+                allowInput: true,
+                locale: 'ja'
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                $('.nav-link').on('click', function() {
+                    // Remove 'active' class from all nav links
+                    $('.nav-link').removeClass('active');
+            
+                    // Add 'active' class to the currently clicked link
+                    $(this).addClass('active');
+                });
+            });
+        </script>
+    </body>
+</html>
