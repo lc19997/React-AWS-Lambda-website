@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>データ作成ツール</title>
+  <!-- External CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+  <link href="css/adminstyle.css" rel="stylesheet" />
+  <!-- Font Awesome JS -->
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- For Modal,Popup -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@4.0.0/bootstrap-4.min.css"
+      integrity="sha256-Rag8Pia41jQPeD4LwBW3TE9GbL4eN32V1vAcivpqWkw=" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <!-- Use Datetime -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+      integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+      crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
+      integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ=="
+      crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ja.min.js"
+      integrity="sha512-rElveAU5iG1CzHqi7KbG1T4DQIUCqhitISZ9nqJ2Z4TP0z4Aba64xYhwcBhHQMddRq27/OKbzEFZLOJarNStLg=="
+      crossorigin="anonymous"></script>
+
+  <script type="module" src="./js/cognito-auth.js"></script>
+</head>
+<body class="sb-nav-fixed">
+    <!-- Top Navigation -->
+    <nav class="sb-topnav navbar navbar-expand navbar-dark">
+      <!-- Navbar Brand -->
+      <a class="navbar-brand ps-3" href="tables.html" style="color: white; font-size: 34px;">データ作成ツール</a>
+      <!-- Navbar Items -->
+      <div class="d-flex ms-auto me-0 me-md-3 my-2 my-md-0 align-items-center">
+        <!-- <img src="./image/circle.png" alt="..."> -->
+        <h6 class="avartartitle">Admin</h6>
+        <button class="btn" id="LogoutButton" type="button">ログアウト</button>
+      </div>
+    </nav>
+  
+    <!-- Sidebar Navigation -->
+    <div id="layoutSidenav">
+      <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+          <div class="sb-sidenav-menu">
+            <div class="nav ml-4">
+              <div class="sb-sidenav-menu-heading"></div>
+              <!-- Sidebar Links -->
+              <a class="nav-link" href="datatables.html">                              
+                作成状況・履歴
+              </a>
+              <a class="nav-link" href="createdata.html">                                
+                  データ作成                            
+              </a>
+              <a class="nav-link" href="schedule.html">                          
+                  スケジュール管理
+              </a>
+              <a class="nav-link active" href="master.html">                          
+                  マスタアップロード
+              </a>
+              <a class="nav-link" href="users.html">                          
+                  ユーザー管理
+              </a>
+            </div>
+          </div>
+          <div class="sb-sidenav-footer">
+            <hr>
+            <div style="text-align: right;">&lt;&lt;</div> <!-- Show "<<" aligned to the right -->
+          </div>
+        </nav>
+      </div>
+        <div id="layoutSidenav_content">
+            <div class="container-fluid px-4">
+                <div class="d-flex pagetitle">
+                    <img src="./image/head.png" alt="..." />
+                    <h2 style="margin-left: 10px"><bold>ユーザー管理</bold></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Import Bootstrap JavaScript bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <!-- Import custom scripts -->
+    <script src="js/scripts.js"></script>
+    <!-- <script src="assets/demo/chart-area-demo.js"></script>
+    <script src="assets/demo/chart-bar-demo.js"></script>
+    <script src="assets/demo/chart-pie-demo.js"></script> -->
+    <script>
+      $(document).ready(function() {
+          $('.nav-link').on('click', function() {
+              // Remove 'active' class from all nav links
+              $('.nav-link').removeClass('active');
+      
+              // Add 'active' class to the currently clicked link
+              $(this).addClass('active');
+          });
+      });
+  </script>
+</body>
+</html>
