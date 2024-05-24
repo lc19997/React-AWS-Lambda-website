@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>データ作成ツール</title>
+
+
+  <script src="/js/aws/jsbn.js"></script>
+  <script src="/js/aws/jsbn2.js"></script>
+  <script src="/js/aws/sjcl.js"></script>
+  <script src="/js/aws/aws-sdk.min.js"></script>
+  <script src="/js/aws/aws-cognito-sdk.min.js"></script>
+  <script src="/js/aws/amazon-cognito-identity.min.js"></script>
+  <!-- External CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+  <link href="css/adminstyle.css" rel="stylesheet" />
+  <link href="css/user.css" rel="stylesheet" />
+  <!-- Font Awesome JS -->
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- For Modal,Popup -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@4.0.0/bootstrap-4.min.css"
+      integrity="sha256-Rag8Pia41jQPeD4LwBW3TE9GbL4eN32V1vAcivpqWkw=" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <!-- Use Datetime -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+      integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+      crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
+      integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ=="
+      crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/ja.min.js"
+      integrity="sha512-rElveAU5iG1CzHqi7KbG1T4DQIUCqhitISZ9nqJ2Z4TP0z4Aba64xYhwcBhHQMddRq27/OKbzEFZLOJarNStLg=="
+      crossorigin="anonymous"></script>
+
+  <script type="module" src="./js/cognito-auth.js"></script>
+  <script src="./js/createuser.js"></script>
+  <script src="./js/scripts.js"></script>
+  <style>
+    /* Add styles to the table */
+    table {
+      width: 100%;
+      border-collapse: collapse; /* Collapse borders */
+    }
+  
+    /* Add styles to the table rows (horizontal borders) */
+    tr {
+      border-bottom: 1px solid #000; /* Add bottom border to each row */
+    }
+  
+    th, td {
+      padding: 8px; /* Add some padding for content */
+      text-align: left; /* Align text to the left */
+      border-right: none; /* Ensure there are no right borders on cells */
+      border-left: none; /* Ensure there are no left borders on cells */
+    }
+  </style>
+</head>
+<body class="sb-nav-fixed">
+    <!-- Top Navigation -->
+    <nav class="sb-topnav navbar navbar-expand navbar-dark">
+      <!-- Navbar Brand -->
+      <a class="navbar-brand ps-3" href="tables.html" style="color: white; font-size: 34px;">データ作成ツール</a>
+      <!-- Navbar Items -->
+      <div class="d-flex ms-auto me-0 me-md-3 my-2 my-md-0 align-items-center">
+        <!-- <img src="./image/circle.png" alt="..."> -->
+        <h6 class="avartartitle">Admin</h6>
+        <button class="btn" id="LogoutButton" type="button">ログアウト</button>
+      </div>
+    </nav>
+  
+    <!-- Sidebar Navigation -->
+    <div id="layoutSidenav">
+      <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+          <div class="sb-sidenav-menu">
+            <div class="nav">
+                <div class="sb-sidenav-menu-heading mb-4"></div>
+                <a class="nav-link" href="datatables.html">                              
+                  <img class="iconstyle" src="./image/icon1.svg"/> 
+                  <span class="icontext">作成状況・履歴</span>
+                </a>
+                <a class="nav-link" href="createdata.html">   
+                  <img class="iconstyle" src="./image/icon2.svg"/>                              
+                  <span class="icontext">データ作成</span>                            
+                </a>                 
+                <a class="nav-unlink" href="#"> 
+                  <img class="iconstyle" src="./image/icon3.svg"/>  
+                  <span class="icontext">スケジュール管理</span>
+                </a>
+                <a class="nav-unlink" href="#"> 
+                  <img class="iconstyle" src="./image/icon4.svg"/>                           
+                  <span class="icontext">マスタアップロード</span>
+                </a>
+                <a id="usernav" class="nav-link active" href="users.html"> 
+                  <img class="iconstyle" src="./image/icon5.svg"/>                           
+                  <span class="icontext">ユーザー管理</span>
+                </a>
+            </div>
+        </div>
+        <div class="sb-sidenav-footer" style="text-align: right;">
+          <hr>
+          <button id="sidebarToggle" style="background-color: #6d6d6d;; text-align: right; color: white;">&lt;&lt;</button>
+        </div>
+      </nav>
+      </div>
+      
+        <div id="layoutSidenav_content">
+            <div class="container-fluid px-4">
+              <div class="d-flex pagetitle">
+                <button id="backButton" width="38px" height="38px" style="border: none;">
+                  <img src="./image/back.svg" style="width: 38px; height: 38px;" alt="..." />
+                </button>
+                <h3 style="margin-left: 5px; padding-top: 7px;"><bold>ユーザー管理に戻る</bold></h3>
+              </div>
+              <div class="d-flex pagetitle1">
+                <img src="./image/head.png" alt="..." />
+                <h3 style="margin-left: 10px"><bold>ユーザー追加</bold></h3>
+              </div>
+              
+              <div id="userForm">
+   
+                <div class="form-group d-flex mt-2 align-items-center">
+                  <label for="inputName" style="width: 31%;">ユーザーID</label>
+                  <input type="text" id="userid" class="form-control userinput-length" name="text" placeholder="" title="半角英小文字、数字で入力して下さい" pattern="[A-Za-z0-9]+" required maxlength="12" />
+                </div>
+
+                <div class="form-group d-flex mt-2 align-items-center">
+                    <label for="inputName" style="width: 31%;">ユーザー名</label>
+                    <input type="text" id="username" class="form-control userinput-length" name="text" placeholder="" title="半角英小文字、数字で入力して下さい" pattern="[A-Za-z0-9]+" required maxlength="40" />
+                </div>
+
+                <div class="form-group d-flex mt-2 align-items-center">
+                  <label for="inputName" style="width: 31%;">区分</label>
+                  <input type="radio" id="useroption1" name="favorite_option" value="Option 1" checked>
+                  <label class="ms-2" for="option1">システム管理者</label>
+              
+                  <input class="ms-4" type="radio" id="useroption2" name="favorite_option" value="Option 2">
+                  <label class="ms-2" for="option2">システム利用者</label>
+                </div>
+
+                <div class="form-group d-flex mt-2 align-items-center">
+                  <label for="inputName" style="width: 31%;">メールアドレス</label>
+                  <input type="text" id="useremail" class="form-control userinput-length" name="text" 
+                  pattern="^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\\.[A-Za-z0-9]{1,}$"
+		      				title="メールアドレスの形式で入力してください" placeholder="" required />
+                </div>
+
+                <div class="form-group d-flex mt-2 align-items-center">
+                  <label for="inputpassword" style="width: 31%;">パスワード</label>
+                  <input type="password" id="inputpassword" class="form-control userinput-length"
+                      pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[^a-zA-Z\d\s]).{8,}"
+                      title="英大小文字、記号、数字を必ず含め、8文字以上で入力してください" name="text" placeholder="" required />
+                </div>
+              
+
+                <div class="form-group d-flex mt-2 mb-5 align-items-center">
+                  <label for="inputName" style="width: 31%;">確認用パスワード</label>
+                  <input type="password" id="inputconfirmpassword" class="userinput-length form-control" name="text" placeholder="" required />
+                </div>
+
+                <div id="message" class="text-center mt-2 mb-2"><span style="color: red;"></span></div>
+        
+                <!-- Start Submit Button -->
+                <div class="text-center">
+                    <button id = "submitButton" style="height: 45px;" class="mt-3 btn btn-block col-lg-4">保存</button>
+                 </div>  
+                <!-- End Submit Button -->
+              </div>
+            </div>
+    
+        </div>
+    </div>
+    <!-- Import Bootstrap JavaScript bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <!-- Import custom scripts -->
+    <script>
+      $(document).ready(function() {
+          $('.nav-link').on('click', function() {
+              // Remove 'active' class from all nav links
+              $('.nav-link').removeClass('active');
+      
+              // Add 'active' class to the currently clicked link
+              $(this).addClass('active');
+          });
+      });
+  </script>
+</body>
+</html>
