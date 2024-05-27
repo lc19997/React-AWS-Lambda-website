@@ -1,0 +1,407 @@
+#LogoutButton{
+  background-color: white;
+  margin-left: 30px;
+}
+.sb-topnav{
+  height: 90px;
+  background-color: #222121;
+}
+
+.sb-sidenav-menu{
+  background-color: #6d6d6d;
+  width: 300px;
+}
+.sb-sidenav-footer{
+  background-color: #6d6d6d !important;
+  width: 300px;
+}
+
+#inputForm{
+  margin-top: 50px;
+}
+#searchForm label, #inputForm label{
+  font-weight: bold;
+}
+
+#inputForm{
+  max-width: 900px;
+  margin-left: 20%;
+  margin-right: 10%;
+  padding: 50px 100px 50px 100px;
+  background-color: rgb(255, 255, 255);
+}
+
+#userForm{
+  margin-top: 50px;
+  width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px 40px 50px 40px;
+  background-color: rgb(255, 255, 255);
+}
+#datatablesSimple{
+  font-size: small !important;
+}
+
+
+.option0{
+  color: #6d6d6d;
+}
+
+#progressForm{
+  width:900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 50px 100px 50px 100px;
+  background-color: rgb(255, 255, 255);
+}
+
+#dataname, #startdate, #enddate, #customercode, #settingvalue, #datatype, #outputprefix, #mastertype{
+  max-width:240px;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+#layoutSidenav_content{
+  background-color: rgb(243, 238, 238);
+}
+
+.nav-link{
+  font-size: large;
+  padding-left:10%;
+}
+
+.nav-link.active {
+  background-color: rgb(63, 56, 56); /* Replace with your desired color */
+}
+.nav-unlink{
+  font-size: large;
+  padding-left:10%;
+  text-decoration: none;
+  color: rgb(63, 56, 56);
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+.nav-unlink:hover {
+  color: rgb(63, 56, 56);/* Replace with your desired color */
+}
+
+.pagetitle{
+  margin-top: 70px;
+  margin-left: 8%;
+}
+
+.pagetitle1{
+  margin-top: 20px;
+  margin-left: 8.5%;
+}
+
+
+#settingvalue{
+  margin-left: 65px;
+}
+#submitButton{
+  background-color: #04B4E4;
+  color: white;
+  border-radius: 50px;
+}
+.form-mycontrol {
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  padding: 0.375rem 0.75rem;
+  width:240px;
+}
+
+/* Add custom style for focus state */
+.form-mycontrol:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.form-group{  
+  height: 50px;
+}
+.mygroup{
+  height: 50px;
+}
+
+
+#searchForm{
+  max-width:1300px;
+  margin-left: 10%;
+  margin-right: 5%;
+  /* padding: 50px 100px 100px 100px; */
+  /* background-color: rgb(255, 255, 255); */
+  /* font-size: large; */
+}
+
+#s-startdate, #s-enddate, #s-customercode, #s-settingvalue, #s-name{
+  width: 200px;
+}
+#searchButton{
+  background-color: #04B4E4;
+  color: white;
+  border-radius: 8px;
+  font-size: large;
+}
+#datatable{
+  max-width:1300px;
+  margin-left: 10%;
+  margin-right: 5%;
+  padding: 10px 17px 20px 17px;
+  background-color: rgb(255, 255, 255);
+}
+#usertables{
+  max-width: 1300px;
+  margin-left: 10%;
+  margin-right: 5%;
+  padding: 30px 20px 20px 20px;
+  background-color: rgb(255, 255, 255);
+}
+
+.avartartitle{
+  color: white; margin-left: 10px; margin-right: 10px; margin-top: 10px;
+}
+body {
+  background-color: rgb(243, 238, 238);
+}
+
+#datatablesSimple th:nth-child(1) {
+  width: 9%;
+}
+#datatablesSimple th:nth-child(2) {
+  width: 12%;
+}
+#datatablesSimple th:nth-child(3) {
+  width: 13%;
+}
+#datatablesSimple th:nth-child(4) {
+  width: 14%;
+}
+#datatablesSimple th:nth-child(5) {
+  width: 12%;
+}
+#datatablesSimple th:nth-child(6) {
+  width: 18%;
+}
+#datatablesSimple th:nth-child(7) {
+  width: 10%;
+}
+#datatablesSimple th:nth-child(8) {
+  width: 12%;
+}
+
+.blackbutton{
+  background-color: black;
+  width:240px;
+  height: 40px;
+  border-radius: 25px;
+  color: white;
+}
+.blackbutton:hover{
+  color: white;
+  background-color: #6d6d6d;
+}                      
+
+.bluebutton:hover{
+  color: white; 
+  background-color: #04B4E4;
+}
+
+.bluebutton{
+  background-color: #04B4E4;
+  width: 140px;
+  height: 35px;
+  border-radius: 5px;
+  color: white;
+}
+
+.create-progress{
+  margin-top: 0;
+  margin-bottom: 0rem;
+  margin-left: 25%;
+  margin-right: 25%;
+  background-color: #ffc107;
+  border-radius: 10px;
+  color: white;
+}
+
+.create-complete{
+  margin-top: 0;
+  margin-bottom: 0rem;
+  margin-left: 25%;
+  margin-right: 25%;
+  background-color: #04B4E4;
+  border-radius: 10px;
+  color: white;
+}
+
+.userinput-length{
+  width: 250px;
+}
+
+.invalid {
+  border: 1px solid red;
+}
+
+.my-confirm-button {
+  background-color: #04B4E4 !important;
+  color: white !important;
+  font-size: 18px !important;
+  padding: 5px 72px !important;
+  border-radius: 20px !important;
+}
+
+.u-confirm-button {
+  background-color: red !important;
+  color: white !important;
+  border-color: red !important;
+  font-size: 16px !important;
+  padding: 5px 52px !important;
+  margin-left: 100px !important;
+  border-radius: 20px !important;
+}
+.u-cancel-button {
+  background-color: #04B4E4 !important;
+  color: white !important;
+  border-color: #04B4E4;
+  font-size: 16px !important;
+  padding: 5px 42px !important;
+  border-radius: 20px !important;
+}
+.u-title{
+  font-size: 22px !important;
+  margin-top: 4% !important;
+  margin-bottom: 3% !important;
+}
+/* .my-popup-style {
+  border-radius: 15px;       
+} */
+
+.my-content-style {
+  margin-top: 2.5rem !important;
+  margin-bottom: 2rem !important;
+  /* Example font family */
+  font-weight: bold !important;       /* Example text weight */
+  font-size: 20px !important;
+  padding: 2px 85px !important;
+}
+.u-content-style {
+  text-align: left !important;
+  margin-left: 10% !important;
+}
+
+#usernav{
+  display: none;
+}
+
+.iconstyle{
+  margin-right: 10px;
+}
+
+.icontextdisplay{
+  display: none;
+}
+
+.iconimagedisplay{
+  padding-left: 87.5% !important;
+}
+
+#sidebarToggle{
+  border: none;
+}
+
+#usertable tbody tr:hover {
+  background-color: #ececec; /* Change to desired hover color */
+}
+
+
+.completed{
+  position: relative; /* Required for positioning the pseudo-element */
+   /* Your desired padding */
+   z-index: 1;
+   color: white;
+}
+
+.completed::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 65px;
+  height: 25px;
+  border-radius: 30px;
+  background-color: #04B4E4; /* Your desired background color */
+  margin: 5px auto 5px auto; /* Same as the padding to offset the background */
+  z-index: -1; /* Place the pseudo-element below the content */
+}
+
+.incompleted{
+  position: relative; /* Required for positioning the pseudo-element */
+   /* Your desired padding */
+   z-index: 1;
+   color: white;
+}
+
+.incompleted::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 65px;
+  height: 25px;
+  border-radius: 30px;
+  background-color: #ffc107; /* Your desired background color */
+  margin: 5px auto 5px auto; /* Same as the padding to offset the background */
+  z-index: -1; /* Place the pseudo-element below the content */
+}
+
+.failed{
+  position: relative; /* Required for positioning the pseudo-element */
+   /* Your desired padding */
+   z-index: 1;
+   color: white;
+}
+
+.failed::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 65px;
+  height: 25px;
+  border-radius: 30px;
+  background-color: red; /* Your desired background color */
+  margin: 5px auto 5px auto; /* Same as the padding to offset the background */
+  z-index: -1; /* Place the pseudo-element below the content */
+}
+
+.waiting{
+  position: relative; /* Required for positioning the pseudo-element */
+   /* Your desired padding */
+   z-index: 1;
+   color: white;
+}
+
+.waiting::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 65px;
+  height: 25px;
+  border-radius: 30px;
+  background-color: #3ac900; /* Your desired background color */
+  margin: 5px auto 5px auto; /* Same as the padding to offset the background */
+  z-index: -1; /* Place the pseudo-element below the content */
+}
